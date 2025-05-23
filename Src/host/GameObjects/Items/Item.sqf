@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -98,7 +98,12 @@ class(Item) extends(IDestructible) attribute(GenerateWeaponModule)
 		private _snd = callSelfReflect("get"+_category+"sound");
 		//Для мультипараметров
 		if equalTypes(_snd,[]) then {
-			_snd params ["_s","_p","_md","_vl"];
+			#ifdef SP_MODE
+			private _md = null;
+			private _lv = null;
+			private _p = null;
+			#endif
+			_snd params ["_s",["_p",null],["_md",null],["_vl",null]];
 			callSelfParams(playSound, _s arg _p arg _md arg _vl); //parametrize called
 		} else {
 			callSelfParams(playSound, _snd arg _pitch arg _maxDist arg _vol);
@@ -1249,6 +1254,16 @@ class(SystemHandItem) extends(SystemItem)
 		getSelf(pointer), //prob pointer prefix ! -> !0x1aba
 		getSelf(model) //todo replace to dummy model
 		]
+	};
+
+	func(getIcon)
+	{
+		objParams();
+		if callSelf(isGrabProcess) exitWith {
+			private _sidePostfix = ifcheck(getSelf(side)==SIDE_LEFT,"_l","_r");
+			PATH_PICTURE("inventory\pull"+_sidePostfix+".paa")
+		};
+		super();
 	};
 
 endclass

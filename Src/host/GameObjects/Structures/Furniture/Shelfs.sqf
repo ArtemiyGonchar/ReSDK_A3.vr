@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -100,6 +100,14 @@ endclass
 editor_attribute("EditorGenerated")
 class(WoodenSmallShelf1) extends(WoodenSmallShelf)
 	var(model,"a3\structures_f_epb\furniture\shelveswooden_f.p3d");
+endclass
+
+class(WoodenSmallShelf2) extends(WoodenSmallShelf)
+	var(model,"ca\structures_e\misc\misc_interier\rack_ep1.p3d");
+endclass
+
+class(WoodenSmallShelf3) extends(WoodenSmallShelf)
+	var(model,"relicta_models\models\interier\bookshelf.p3d");
 endclass
 
 editor_attribute("EditorGenerated")

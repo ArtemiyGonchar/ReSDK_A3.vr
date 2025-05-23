@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -40,6 +40,7 @@ loadFile("src\host\GameEvents\loader.hpp");
 loadFile("src\host\SpecialActions\SpecialActions.sqf");
 loadFile("src\host\Client\client.sqf");
 loadFile("src\host\Gender\Genders.sqf");
+loadFile("src\host\ServerLighting\ServerLighting_init.sqf"); //serverside lighting system (uses atmos, materials)
 loadFile("src\host\Materials\Materials_init.sqf");
 call nodegen_loadClasses;
 // start class generator
@@ -55,8 +56,10 @@ if !([] call oop_loadTypes) exitWith {
 loadFile("src\host\Structs\Structs_init.sqf");
 call struct_initialize; //init all struct
 
+//generate material stepsounds, only after class initialized
+call mat_initializeMaterialTable;
+
 //another loaded files...
-//DEPREACTED loadFile("src\host\Database\fDB\fDB_init.sqf"); //локальная база данных
 loadFile("src\host\Database\SQLite\SQLite_init.sqf");
 loadFile("src\host\Namings\Naming_init.sqf"); //система имён
 loadFile("src\host\Traits\TraitsInit.sqf"); //пороки, последствия
@@ -75,7 +78,6 @@ loadFile("src\host\GamemodeManager\GamemodeManager.sqf");
 loadFile("src\host\CraftSystem\CraftSystem_init.sqf"); //craft system
 loadFile("src\host\AmbientControl\AmbientControl_init.sqf");
 loadFile("src\host\ServerInteraction\ServerInteractionInit.sqf"); //throwing, interactions etc. on serverside
-loadFile("src\host\ServerLighting\ServerLighting_init.sqf"); //serverside lighting system
 loadFile("src\host\Reputation\Reputation_init.sqf"); //reputation system
 //loadFile("src\host\AI\ai_init.sqf");//ai system
 // Initialize tools in debug

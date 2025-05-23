@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -42,12 +42,6 @@ endclass
 
 class(Scales) extends(InteractibleInterior)
 	var(model,"ml\ml_object_new\model_14_10\wesi.p3d");
-	getter_func(isMovable,true);
-endclass
-
-class(Gramofon) extends(InteractibleInterior)
-	var(model,"relicta_models\models\interier\props\patefon.p3d");
-	var(material,"MatWood");
 	getter_func(isMovable,true);
 endclass
 

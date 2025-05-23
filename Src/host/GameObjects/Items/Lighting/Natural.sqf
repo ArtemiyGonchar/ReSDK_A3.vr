@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -131,7 +131,7 @@ class(Torch) extends(ILightible)
 	var(size,ITEM_SIZE_SMALL);
 	var(weight,gramm(560));
 	var(icon,invicon(torch));
-	var(light,LIGHT_FIRE);
+	var(light,"SLIGHT_LEGACY_FIRE" call lightSys_getConfigIdByName);
 	getter_func(isFireLight,true);
 	getterconst_func(getHandAnim,ITEM_HANDANIM_TORCH);
 	getter_func(getTwoHandAnim,ITEM_2HANIM_SWORD);
@@ -165,6 +165,10 @@ class(Torch) extends(ILightible)
 	func(onUpdate)
 	{
 		updateParams();
+		#ifdef SP_MODE
+			sp_checkWSim("light");
+		#endif
+
 		modSelf(fuelLeft,-1);
 		callSelf(handleIgniteArea);
 		if (getSelf(fuelLeft) == 0) then {
@@ -271,7 +275,7 @@ endclass
 class(Sigarette) extends(Torch)
 	var(name,"Сигарета");
 	var(desc,"Для перекура самое то!");
-	var(light,LIGHT_SIGARETTE);
+	var(light,"SLIGHT_LEGACY_SIGARETTE" call lightSys_getConfigIdByName);
 	var(allowedSlots,[INV_FACE]);
 	var(size,ITEM_SIZE_TINY);
 	var(weight,gramm(1.08));
@@ -343,6 +347,18 @@ class(SamokrutkaDisabled) extends(Samokrutka)
 	var(lightIsEnabled,false);
 endclass
 
+class(SmokingPipe) extends(Sigarette)
+	var(name,"Курительная трубка");
+	var(desc,"Лучше для курения не придумешь!");
+	var(model,"relicta_models\models\interier\props\treasure\pipe\pipe.p3d");
+	getter_func(fuelEmptyModel,"relicta_models\models\interier\props\treasure\pipe\pipe.p3d");
+	var(fuelLeft,60 * 15);
+endclass
+
+class(SmokingPipeDisabled) extends(SmokingPipe)
+	var(lightIsEnabled,false);
+endclass
+
 class(Candle) extends(Sigarette)
 	var(name,"Свеча");
 	var(desc,"");
@@ -353,9 +369,18 @@ class(Candle) extends(Sigarette)
 	var(dr,1);
 	var(size,ITEM_SIZE_SMALL);
 	var(weight,gramm(45));
-	var(light,LIGHT_CANDLE);
+	var(light,"SLIGHT_LEGACY_CANDLE" call lightSys_getConfigIdByName);
 	getterconst_func(getHandAnim,ITEM_HANDANIM_TORCH);
 	var(fuelLeft,60 * 30);
+
+	func(onUpdate)
+	{
+		objParams();
+		#ifdef SP_MODE
+			sp_checkWSim("light");
+		#endif
+		super();
+	};
 
 	func(onFuelEmpty)
 	{
@@ -390,7 +415,7 @@ class(LampKerosene) extends(Torch)
 	var(size,ITEM_SIZE_LARGE);
 	var(weight,gramm(520));
 	getter_func(objectHealthType,OBJECT_TYPE_COMPLEX);
-	var(light,LIGHT_LAMP_KEROSENE);
+	var(light,"SLIGHT_LEGACY_LAMP_KEROSENE" call lightSys_getConfigIdByName);
 	getterconst_func(getHandAnim,ITEM_HANDANIM_LAMP);
 	var(fuelLeft,60 * 60 * 1.3);
 
@@ -417,6 +442,13 @@ class(LampKeroseneDisabled) extends(LampKerosene)
 	var(lightIsEnabled,false);
 endclass
 
+class(LuxuryLamp) extends(LampKerosene)
+	var(name,"Роскошная лампа");
+	var(desc,"Ручная работа");
+	var(model,"ca\structures\furniture\lighting\lantern\lantern.p3d");
+	var(lightIsEnabled,false);
+endclass
+
 
 class(Match) extends(Sigarette)
 	var(name,"Спичка");
@@ -426,7 +458,7 @@ class(Match) extends(Sigarette)
 	var(weight,gramm(5));
 	var(dr,0);
 	var(size,ITEM_SIZE_TINY);
-	var(light,LIGHT_MATCH);
+	var(light,"SLIGHT_LEGACY_MATCH" call lightSys_getConfigIdByName);
 	var(lightIsEnabled,false);
 	var(canRestoreLight,true);
 	var(fuelLeft,randInt(30,60));

@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -435,9 +435,9 @@ struct(AtmosAreaFire) base(AtmosAreaBase)
 	def(getLightTypeBySize)
 	{
 		[
-			SLIGHT_ATMOS_FIRE_1,
-			SLIGHT_ATMOS_FIRE_2,
-			SLIGHT_ATMOS_FIRE_3
+			"SLIGHT_ATMOS_FIRE_1" call lightSys_getConfigIdByName,
+			"SLIGHT_ATMOS_FIRE_2" call lightSys_getConfigIdByName,
+			"SLIGHT_ATMOS_FIRE_3" call lightSys_getConfigIdByName
 		] select ((self getv(size))-1)
 	}
 

@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -12,7 +12,7 @@
 cm_switchLocality = {
 	params ["_unit", "_player"];
 	
-	#ifdef EDITOR
+	#ifdef EDITOR_OR_SP_MODE
 	if (true) exitWith {_unit setVariable ["OriginalOwner", owner _unit, true];};
 	#endif
 	

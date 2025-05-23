@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -127,7 +127,7 @@ interact_th_addTask = {
 
 	//add second objects to shotguns
 	if (_mode == "sh") then {
-		if equals(_LE_eff,SHOT_BULLET_SHOTGUN) then {
+		if equals(_LE_eff,"BFX_BULLET_SHOTGUN") then {
 			//TODO: use effects as shot
 		};
 	};
@@ -137,12 +137,12 @@ interact_th_addTask = {
 		if (_LE_eff call le_isLightConfig) exitWith {
 			[_LE_eff,_tempObj] call le_loadLight;
 		};
-		if (_LE_eff call le_isShotConfig) exitWith {
+		if (_LE_eff call bfx_containConfig) exitWith {
 			[
 				_LE_eff,
 				ifcheck(isNullVar(_mob),player,_mob),
 				[ifcheck(_slotHandAtt==INV_HAND_L,-1,1)]
-			] call le_doShot;
+			] call bfx_doShot;
 		};
 	};
 	//Вне МП на клиенте не кидаем

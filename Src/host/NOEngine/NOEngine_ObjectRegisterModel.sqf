@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -84,6 +84,9 @@ noe_unregisterObject = {
 	} count chunk_getOwners(_chunkObject);
 
 	if (_deleteVisual) then {
+		
+		if isNullVar(_vis) exitWith {}; //already removed
+
 		if !isNullObject(_vis getVariable vec2("srv_ngo_geom",objNull)) then {
 			deleteVehicle (_vis getVariable "srv_ngo_geom"); //dispose ngo obj
 		};

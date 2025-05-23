@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -65,6 +65,7 @@ vsm_generateFrequencies = {
 
 //initialize voice manager
 vsm_Init = {
+	//!this function not called
 	if (!canSuspend) exitWith {
 		error("vm::Init() - only in thread expected");
 	};
@@ -100,6 +101,7 @@ vsm_Init = {
 
 	TF_Radio_Count = [];
 
+	/*
 	while {true} do {
 		call TFAR_fnc_processGroupFrequencySettings;
 		_allUnits = allUnits;
@@ -168,7 +170,7 @@ vsm_Init = {
 		} count _allUnits;
 		sleep 1;
 	};
-
+	*/
 };
 
 

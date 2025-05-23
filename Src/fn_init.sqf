@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -105,6 +105,7 @@ progLog("START LOADING CONTENT...");
 loadFile("src\host\SceneReloader\SceneReloader.sqf"); //works only inside debug mode
 
 allClientContents = [];
+allClientModulePathes = [];
 
 //removing all cba events in debug mode
 if (isnil {mem_cba_events}) then {
@@ -299,6 +300,10 @@ if (isMultiplayer) then {
 	[format["Сервер запущен! Версия %1",project_version]] call discServerNotif;
 	#endif
 };
+
+#ifdef SP_MODE
+	loadFile("src\host\Singleplayer\singleplayer_init.sqf");
+#endif
 
 server_maxclients = 70; //максимальное количество подключаемых клиентов
 

@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -19,12 +19,12 @@ if (isMultiplayer)then{
 		onEachFrame {x_sync_frame = diag_frameNo};
 		addMissionEventHandler ["EachFrame", {
 			if (diag_frameNo != x_sync_frame) then {
-				[["EFHmod",diag_frameNo - x_sync_frame,getPlayerUID player],{[remoteExecutedOwner,_this] call pre_oncheat}] remoteExecCall ["call",2]
+				[["EFHmod",diag_frameNo - x_sync_frame],{[remoteExecutedOwner,_this] call pre_oncheat}] remoteExecCall ["call",2]
 			};
 		}];
 		client_sendNotifToServer = {
 			params ["_mes"];
-			[[_mes,getPlayerUID player],{[_this select 0,remoteExecutedOwner,_this select 1] call pre_notifClientAssert}] remoteExecCall ["call",2];
+			[[_mes],{[_this select 0,remoteExecutedOwner] call pre_notifClientAssert}] remoteExecCall ["call",2];
 		};
 	};
 };

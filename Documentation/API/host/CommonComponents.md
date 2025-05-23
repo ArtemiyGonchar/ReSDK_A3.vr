@@ -851,6 +851,32 @@ Description:
 - Param: _enumParry
 
 File: [host\CommonComponents\Animator.sqf at line 308](../../../Src/host/CommonComponents/Animator.sqf#L308)
+## anim_addAttach
+
+Type: function
+
+Description: с помощью этого метода можно контролирвать анимированные атачи
+- Param: _dest
+- Param: _ctxAtt
+
+File: [host\CommonComponents\Animator.sqf at line 352](../../../Src/host/CommonComponents/Animator.sqf#L352)
+## anim_removeAttach
+
+Type: function
+
+Description: 
+- Param: _dest
+- Param: _src
+
+File: [host\CommonComponents\Animator.sqf at line 364](../../../Src/host/CommonComponents/Animator.sqf#L364)
+## anim_syncOnFrameAttaches
+
+Type: function
+
+Description: 
+- Param: _mob
+
+File: [host\CommonComponents\Animator.sqf at line 371](../../../Src/host/CommonComponents/Animator.sqf#L371)
 # Assert.sqf
 
 ## sys_int_evalassert
@@ -1133,6 +1159,136 @@ Description: Конвертация даты и времени в строку
 - Param: _outms (optional, default false)
 
 File: [host\CommonComponents\DateTime.sqf at line 13](../../../Src/host/CommonComponents/DateTime.sqf#L13)
+# LightCfg.sqf
+
+## lightSys_null_t
+
+Type: Variable
+
+Description: 
+
+
+Initial value:
+```sqf
+null
+```
+File: [host\CommonComponents\LightCfg.sqf at line 8](../../../Src/host/CommonComponents/LightCfg.sqf#L8)
+## lightSys_replacer_client_header
+
+Type: Variable
+
+Description: %1 type(int)
+
+
+Initial value:
+```sqf
+"...
+```
+File: [host\CommonComponents\LightCfg.sqf at line 57](../../../Src/host/CommonComponents/LightCfg.sqf#L57)
+## lightSys_replacer_server_header
+
+Type: Variable
+
+Description: здесь приходится обходить пробему undefined variable. в генераторе мы выбираем null значение
+
+
+Initial value:
+```sqf
+"...
+```
+File: [host\CommonComponents\LightCfg.sqf at line 68](../../../Src/host/CommonComponents/LightCfg.sqf#L68)
+## lightSys_replacer_footer
+
+Type: Variable
+
+Description: common footer for scripted config
+
+
+Initial value:
+```sqf
+"] " 
+```
+File: [host\CommonComponents\LightCfg.sqf at line 77](../../../Src/host/CommonComponents/LightCfg.sqf#L77)
+## lightSys_assocCfg_keyId
+
+Type: Variable
+
+Description: assoc maps
+
+
+Initial value:
+```sqf
+createHashMap
+```
+File: [host\CommonComponents\LightCfg.sqf at line 80](../../../Src/host/CommonComponents/LightCfg.sqf#L80)
+## lightSys_assocCfg_keyName
+
+Type: Variable
+
+Description: 
+
+
+Initial value:
+```sqf
+createHashMap
+```
+File: [host\CommonComponents\LightCfg.sqf at line 81](../../../Src/host/CommonComponents/LightCfg.sqf#L81)
+## lightSys_cfgId_cur
+
+Type: Variable
+
+Description: base config id
+
+
+Initial value:
+```sqf
+2100
+```
+File: [host\CommonComponents\LightCfg.sqf at line 84](../../../Src/host/CommonComponents/LightCfg.sqf#L84)
+## lightSys_prepConfig
+
+Type: function
+
+Description: light config parser
+- Param: _content
+- Param: _id
+- Param: _refName
+- Param: _isServerPrep (optional, default false)
+
+File: [host\CommonComponents\LightCfg.sqf at line 11](../../../Src/host/CommonComponents/LightCfg.sqf#L11)
+## lightSys_registerConfig
+
+Type: function
+
+Description: 
+- Param: _content
+- Param: _isServer (optional, default false)
+
+File: [host\CommonComponents\LightCfg.sqf at line 35](../../../Src/host/CommonComponents/LightCfg.sqf#L35)
+## lightSys_preInitialize
+
+Type: function
+
+Description: 
+
+
+File: [host\CommonComponents\LightCfg.sqf at line 86](../../../Src/host/CommonComponents/LightCfg.sqf#L86)
+## lightSys_getConfigNameById
+
+Type: function
+
+Description: get cfg name by id
+- Param: _id
+
+File: [host\CommonComponents\LightCfg.sqf at line 93](../../../Src/host/CommonComponents/LightCfg.sqf#L93)
+## lightSys_getConfigIdByName
+
+Type: function
+
+Description: get cfg id by name
+- Param: _name
+
+File: [host\CommonComponents\LightCfg.sqf at line 99](../../../Src/host/CommonComponents/LightCfg.sqf#L99)
 # ModelsPath.sqf
 
 ## model_getAssoc
@@ -1414,7 +1570,7 @@ Description:
 
 Initial value:
 ```sqf
-"TF RELICTA ADDON API 1.8"
+"TF RELICTA ADDON API 2.0"
 ```
 File: [host\CommonComponents\Voice.sqf at line 8](../../../Src/host/CommonComponents/Voice.sqf#L8)
 ## vs_list_langs

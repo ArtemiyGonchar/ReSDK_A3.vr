@@ -1,5 +1,5 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
@@ -1101,6 +1101,10 @@ gm_endRound = {
 
 	//обрабатываем все незавершенные задачи как проваленные
 	{
+		// Предварительно проверим задачи перед завершением (потому что поток проверит их только в следующем цикле симуляции)
+		if (!getVar(_x,isDone) && !callFunc(_x,checkCompleteOnEnd)) then {
+			callFunc(_x,updateMethodInternal);
+		};
 		if !getVar(_x,isDone) then {
 			callFuncParams(_x,setTaskResult,-1 arg true);
 		};
@@ -1422,7 +1426,7 @@ gm_createMob = {
 };
 
 lobby_createDummy = {
-	params ["_pos",["_isWoman",false]];
+	params ["_pos",["_isWoman",false],["_canSim",false]];
 	private _mob = createAgent [BASIC_MOB_TYPE, [0,0,0], [], 0, "NONE"];
 	_mob disableAI "MOVE";
 	_mob disableAI "TARGET";
@@ -1436,15 +1440,15 @@ lobby_createDummy = {
 	if (_isWoman) then {
 		_mob forceAddUniform getFieldBaseValue("MobWoman","defaultUniform");
 	};
-
-	_mob ENABLESIMULATIONGLOBAL false;
+	//отключение симуляции сбивает синхронизацию формы
+	_mob ENABLESIMULATIONGLOBAL _canSim;
 	_mob
 };
 private _canCreateDummy = true;
 
 if (_canCreateDummy) then {
 	private _dummyMobPos = [50,50,0];
-	private _dummyMan = [_dummyMobPos arg false] call lobby_createDummy;
+	private _dummyMan = [_dummyMobPos,false,true] call lobby_createDummy;
 	netSetGlobal(lobby_glob_dummy_man,_dummyMan);
 	assert(!isNullReference(_dummyMan));
 };

@@ -1,11 +1,12 @@
 // ======================================================
-// Copyright (c) 2017-2024 the ReSDK_A3 project
+// Copyright (c) 2017-2025 the ReSDK_A3 project
 // sdk.relicta.ru
 // ======================================================
 
 #include <..\..\host\engine.hpp>
 #include <..\..\host\struct.hpp>
 
+namespace(Rendering,NULL)
 
 //including modules
 #include "PostProcessing\PPInit.sqf"
